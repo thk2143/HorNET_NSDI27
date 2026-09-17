@@ -1,0 +1,19 @@
+{
+  "_targets": "bpf_redirect_map returns XDP_REDIRECT exactly when the slot holds a device, else flags & 3",
+  "_predict": "PASS",
+  "runs": {
+    "filled_slot": {
+      "_why": "tx[3] = ifindex 1 (lo, which always exists in the runner's netns)",
+      "pkt": "ffffffffffff aabbccddee01 0800 03",
+      "maps": {"tx": {"0x03000000": "0x01000000"}}
+    },
+    "empty_slot": {
+      "pkt": "ffffffffffff aabbccddee01 0800 05",
+      "maps": {"tx": {"0x03000000": "0x01000000"}}
+    },
+    "past_max_entries": {
+      "pkt": "ffffffffffff aabbccddee01 0800 63",
+      "maps": {"tx": {"0x03000000": "0x01000000"}}
+    }
+  }
+}

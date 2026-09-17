@@ -1,0 +1,15 @@
+{
+  "_targets": "a .rodata read sees the section's contents",
+  "_predict": "PASS",
+  "runs": {
+    "nibble_3": {
+      "pkt": "ffffffffff03 aabbccddee01 0800"
+    },
+    "nibble_1": {
+      "pkt": "ffffffffff01 aabbccddee01 0800"
+    },
+    "nibble_a": {
+      "pkt": "ffffffffff0a aabbccddee01 0800"
+    }
+  }
+}

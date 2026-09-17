@@ -1,0 +1,11 @@
+{
+  "_targets": "bpf_get_prandom_u32",
+  "_predict": "PASS (both exits admitted; nondet, so every sample must be allowed)",
+  "_why": "value-only helper: r0 is a free u32 per call site",
+  "nondet": true,
+  "runs": {
+    "once": {
+      "pkt": "ffffffffffff aabbccddee01 0800"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "_targets": "over every packet: bytes 1, 2 always make XDP_TX, whichever path the join came from",
+  "_expect": {
+    "one_two_is_tx": "holds",
+    "seven_two_is_pass": "holds"
+  },
+  "exit_conditions": {
+    "one_two_is_tx": {
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "not": {
+              "and": [
+                {
+                  "offset": 0,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "offset": 1,
+                  "size": 1,
+                  "value": 2
+                }
+              ]
+            }
+          },
+          {
+            "ret": 0
+          },
+          {
+            "ret": 3
+          }
+        ]
+      }
+    },
+    "seven_two_is_pass": {
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "not": {
+              "and": [
+                {
+                  "offset": 0,
+                  "size": 1,
+                  "value": 20
+                },
+                {
+                  "offset": 1,
+                  "size": 1,
+                  "value": 2
+                }
+              ]
+            }
+          },
+          {
+            "ret": 0
+          },
+          {
+            "ret": 2
+          }
+        ]
+      }
+    }
+  }
+}

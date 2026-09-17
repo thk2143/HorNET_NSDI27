@@ -1,0 +1,26 @@
+{
+  "_targets": "a realistic filter end to end: bounds, ethertype, a HASH lookup keyed on packet bytes, and a comparison against the stored value",
+  "_predict": "PASS",
+  "runs": {
+    "hit_match": {
+      "_why": "ARP request from aa:bb:cc:dd:ee:01 claiming 10.0.0.1, which is what the cache holds",
+      "pkt": "ffffffffffff aabbccddee01 0806 0001 0800 06 04 0001 aabbccddee01 0a000001 000000000000 0a000002",
+      "maps": {"arp_cache": {"0xaabbccddee01000000000000": "10.0.0.1"}}
+    },
+    "hit_mismatch": {
+      "pkt": "ffffffffffff aabbccddee01 0806 0001 0800 06 04 0001 aabbccddee01 0a000001 000000000000 0a000002",
+      "maps": {"arp_cache": {"0xaabbccddee01000000000000": "10.0.0.2"}}
+    },
+    "miss": {
+      "pkt": "ffffffffffff aabbccddee01 0806 0001 0800 06 04 0001 aabbccddee01 0a000001 000000000000 0a000002",
+      "maps": {"arp_cache": {}}
+    },
+    "non_arp": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c00000000401100000a0000010a000002"
+    },
+    "truncated_arp": {
+      "_why": "ARP ethertype, but 6 bytes short of a full ARP header",
+      "pkt": "ffffffffffff aabbccddee01 0806 0001 0800 06 04 0001 aabbccddee01 0a000001"
+    }
+  }
+}

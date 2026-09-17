@@ -1,0 +1,26 @@
+{
+  "_comment": "Fully symbolic input: no packet bytes, no length and no map entry fixed.",
+  "block_conditions": {
+    "cpu_configured": {
+      "block": 17,
+      "assert": "exists",
+      "cond": {"idx": 58, "helper": "bpf_map_lookup_elem", "returns": "non_null"}
+    }
+  },
+  "exit_conditions": {
+    "cpus_count_has_slot0": {
+      "assert": "exists",
+      "cond": {"map": "cpus_count", "key": 0, "contains": true}
+    },
+    "may_redirect": {
+      "assert": "all",
+      "cond": {"or": [
+        {"not": {"idx": 107, "helper": "bpf_map_lookup_elem", "returns": "non_null"}},
+        {"and": [
+          {"or": [{"ret": 1}, {"ret": 2}, {"ret": 4}]},
+          {"ret": 3, "op": "ne"}
+        ]}
+      ]}
+    }
+  }
+}

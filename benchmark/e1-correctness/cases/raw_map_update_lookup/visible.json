@@ -1,0 +1,10 @@
+{
+  "_targets": "starting from an empty map: the update inserts key 7 with its value, and key 9 stays absent",
+  "_expect": {"update_inserts": "holds", "update_stores": "holds", "other_key_not_inserted": "unsat"},
+  "input": {"maps": {"m": {}}},
+  "exit_conditions": {
+    "update_inserts":         {"assert": "all", "cond": {"map": "m", "key": "0x07000000", "contains": true}},
+    "update_stores":          {"assert": "all", "cond": {"map": "m", "key": "0x07000000", "value": "0x44332211"}},
+    "other_key_not_inserted": {"assert": "exists", "cond": {"map": "m", "key": "0x09000000", "contains": true}}
+  }
+}

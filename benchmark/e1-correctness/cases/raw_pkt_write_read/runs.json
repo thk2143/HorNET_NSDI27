@@ -1,0 +1,19 @@
+{
+  "_targets": "a constant-offset packet store is what a later load of the same byte sees, and what leaves the program",
+  "_predict": "PASS",
+  "runs": {
+    "frame_34": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c00000000401100000000000000000000",
+      "observe": {"pkt": true}
+    },
+    "frame_24": {
+      "_why": "exactly the 24 bytes the program checks for",
+      "pkt": "ffffffffffff aabbccddee01 0800 11223344556677889900",
+      "observe": {"pkt": true}
+    },
+    "frame_23": {
+      "pkt": "ffffffffffff aabbccddee01 0800 112233445566778899",
+      "observe": {"pkt": true}
+    }
+  }
+}

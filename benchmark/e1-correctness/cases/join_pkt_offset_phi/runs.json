@@ -1,0 +1,19 @@
+{
+  "_targets": "a merged packet pointer reads from the offset its path chose, under the bounds check on the merged value",
+  "_predict": "PASS",
+  "runs": {
+    "vlan_ipv4": {
+      "pkt": "ffffffffffffaabbccddee018100000108004500001c00000000401100000a0000010a0000020000000000000000000000000000000000000000000000000000"
+    },
+    "plain_ipv4": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c 00000000 40110000 0a000001 0a000002 03e8 0035 0008 0000"
+    },
+    "plain_other": {
+      "pkt": "ffffffffffffaabbccddee01080060000000000000000000000000000000000000000000000000000000"
+    },
+    "vlan_18": {
+      "_why": "tagged, but byte 18 is past the end",
+      "pkt": "ffffffffffff aabbccddee01 8100 0001 0800"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "_targets": "a non-static .bss global",
+  "_predict": "PASS",
+  "runs": {
+    "fresh": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "observe": {
+        "bss": [
+          "hits"
+        ]
+      }
+    }
+  }
+}

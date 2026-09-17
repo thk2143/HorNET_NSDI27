@@ -1,0 +1,19 @@
+{
+  "_comment": "Fully symbolic input: no packet bytes, no length and no map entry fixed.",
+  "exit_conditions": {
+    "min_len": {
+      "assert": "exists",
+      "cond": {"pkt_len": {"min": 34}}
+    },
+    "redirect_or_pass": {
+      "assert": "all",
+      "cond": {"or": [
+        {"not": {"field": "eth_type", "value": "0x0800"}},
+        {"and": [
+          {"or": [{"ret": 2}, {"ret": 4}]},
+          {"ret": 3, "op": "ne"}
+        ]}
+      ]}
+    }
+  }
+}

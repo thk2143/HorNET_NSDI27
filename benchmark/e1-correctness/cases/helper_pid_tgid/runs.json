@@ -1,0 +1,11 @@
+{
+  "_targets": "bpf_get_current_pid_tgid",
+  "_predict": "PASS (nondet: the kernel's exit must be admitted)",
+  "_why": "value-only helper: r0 is a free u64 per call site; the kernel's pid is the runner's and changes on every recording",
+  "nondet": true,
+  "runs": {
+    "in_process": {
+      "pkt": "ffffffffffff aabbccddee01 0800"
+    }
+  }
+}

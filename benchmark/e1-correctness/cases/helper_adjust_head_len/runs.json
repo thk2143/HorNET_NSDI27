@@ -1,0 +1,15 @@
+{
+  "_targets": "a successful adjust_head(-14) moves pkt_len by 14, which is what a later bounds check sees",
+  "_predict": "PASS",
+  "runs": {
+    "grow_64": {
+      "_why": "pin: -14 is inside the headroom test_run leaves (growth up to 216 bytes succeeds on this kernel), so the helper returns 0",
+      "pkt": "ffffffffffff aabbccddee01 0800 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "pin": [{"helper": "bpf_xdp_adjust_head", "nth": 0, "op": "eq", "value": 0}]
+    },
+    "grow_20": {
+      "pkt": "ffffffffffff aabbccddee01 0800 000000000000",
+      "pin": [{"helper": "bpf_xdp_adjust_head", "nth": 0, "op": "eq", "value": 0}]
+    }
+  }
+}

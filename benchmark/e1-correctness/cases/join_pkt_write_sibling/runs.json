@@ -1,0 +1,14 @@
+{
+  "_targets": "after a join, a load sees the write of the path that actually ran",
+  "_predict": "PASS",
+  "runs": {
+    "byte_path": {
+      "pkt": "01000000ffff aabbccddee01 0800 4500001c00000000401100000000000000000000",
+      "observe": {"pkt": true}
+    },
+    "word_path": {
+      "pkt": "00000000ffff aabbccddee01 0800 4500001c00000000401100000000000000000000",
+      "observe": {"pkt": true}
+    }
+  }
+}

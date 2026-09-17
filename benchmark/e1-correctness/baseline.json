@@ -1,0 +1,42 @@
+{
+  "bpf-examples/dhcp_kern_xdp": {
+    "adjust_head_ok": "sat",
+    "csum_nonzero": "sat",
+    "no_redirect": "holds",
+    "server_configured": "sat"
+  },
+  "bpf-examples/xdp_cpumap_qinq": {
+    "cpu_configured": "sat",
+    "cpus_count_has_slot0": "sat",
+    "may_redirect": "violated"
+  },
+  "crab/lb_kern": {
+    "lb_forward_only": "violated"
+  },
+  "fluvia/xdp_bpfel": {
+    "monitor_always_pass": "holds",
+    "timestamp_taken": "sat"
+  },
+  "hercules/redirect_userspace": {
+    "min_len": "sat",
+    "redirect_or_pass": "violated"
+  },
+  "hxdp/xdp_fw_kern": {
+    "firewall_pass_or_drop": "violated",
+    "tcp_to_http": "sat"
+  },
+  "katran/balancer_main": {
+    "l4lb_no_redirect": "holds",
+    "vip_lookup_hit": "sat",
+    "vip_map_has_key0": "sat"
+  },
+  "xdp-tools/xdpfilt_alw_eth": {
+    "no_tx_redirect": "holds",
+    "src_mac_allowed": "sat"
+  },
+  "xdp-tools/xdpfilt_dny_eth": {
+    "filter_has_entry": "sat",
+    "pass_or_drop_only": "holds",
+    "src_mac_in_filter": "sat"
+  }
+}

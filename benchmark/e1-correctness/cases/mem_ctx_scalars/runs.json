@@ -1,0 +1,16 @@
+{
+  "_targets": "ctx->ingress_ifindex and ctx->rx_queue_index read as the values the run was given",
+  "_predict": "PASS",
+  "runs": {
+    "loopback": {
+      "pkt": "ffffffffffff aabbccddee01 0800"
+    },
+    "loopback_explicit": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "ctx": {
+        "ingress_ifindex": 1,
+        "rx_queue_index": 0
+      }
+    }
+  }
+}

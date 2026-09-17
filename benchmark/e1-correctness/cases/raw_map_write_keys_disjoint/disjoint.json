@@ -1,0 +1,11 @@
+{
+  "_targets": "with m = {1: 5, 2: 0} and the packet's keys 1 and 2: the write at 1 cannot be what the read at 2 sees, and 2's own value is reachable",
+  "_expect": {"write_misses_other_key": "unsat", "other_key_reads_its_own": "sat"},
+  "input": {"maps": {"m": {"0x01000000": "0x05000000", "0x02000000": "0x00000000"}}},
+  "exit_conditions": {
+    "write_misses_other_key": {"assert": "exists", "cond": {"and": [
+      {"offset": 0, "size": 4, "value": [1, 0, 0, 0]}, {"offset": 4, "size": 4, "value": [2, 0, 0, 0]}, {"ret": 1}]}},
+    "other_key_reads_its_own": {"assert": "exists", "cond": {"and": [
+      {"offset": 0, "size": 4, "value": [1, 0, 0, 0]}, {"offset": 4, "size": 4, "value": [2, 0, 0, 0]}, {"ret": 3}]}}
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "_targets": "BPF_ATOMIC | BPF_ADD | BPF_FETCH returns the value before the add",
+  "_predict": "PASS",
+  "runs": {
+    "fresh": {
+      "pkt": "ffffffffffff aabbccddee01 0800"
+    },
+    "dropped_150": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {
+        "counters": {
+          "0x01000000": "0x9600000000000000"
+        }
+      }
+    }
+  }
+}

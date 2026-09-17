@@ -1,0 +1,18 @@
+{
+  "_targets": "inside one block, a load before a store sees the old byte and a load after it the new one",
+  "_predict": "PASS",
+  "runs": {
+    "old_0x10": {
+      "pkt": "ffffffffffffaabbccddee0108004500001c00001000401100000a0000010a000002",
+      "observe": {
+        "pkt": true
+      }
+    },
+    "old_0x77": {
+      "pkt": "ffffffffffffaabbccddee0108004500001c00007700401100000a0000010a000002",
+      "observe": {
+        "pkt": true
+      }
+    }
+  }
+}

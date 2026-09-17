@@ -1,0 +1,9 @@
+{
+  "_targets": "bpf_redirect with flags it does not accept",
+  "_predict": "PASS",
+  "runs": {
+    "flags_2": {
+      "pkt": "ffffffffffff aabbccddee01 0800"
+    }
+  }
+}

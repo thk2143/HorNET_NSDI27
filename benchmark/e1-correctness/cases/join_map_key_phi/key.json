@@ -1,0 +1,52 @@
+{
+  "_targets": "with h = {7: 70, 9: 90}: byte 0 = 1 always reads 70, and any other byte never does",
+  "_expect": {
+    "key_7_is_tx": "holds",
+    "key_9_never_tx": "unsat"
+  },
+  "input": {
+    "maps": {
+      "h": {
+        "0x07000000": "0x46000000",
+        "0x09000000": "0x5a000000"
+      }
+    }
+  },
+  "exit_conditions": {
+    "key_7_is_tx": {
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "offset": 0,
+            "size": 1,
+            "value": 1,
+            "op": "ne"
+          },
+          {
+            "ret": 0
+          },
+          {
+            "ret": 3
+          }
+        ]
+      }
+    },
+    "key_9_never_tx": {
+      "assert": "exists",
+      "cond": {
+        "and": [
+          {
+            "offset": 0,
+            "size": 1,
+            "value": 1,
+            "op": "ne"
+          },
+          {
+            "ret": 3
+          }
+        ]
+      }
+    }
+  }
+}

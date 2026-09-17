@@ -1,0 +1,11 @@
+{
+  "_targets": "bpf_xdp_adjust_meta is recorded and branches on its result",
+  "_predict": "PASS",
+  "_why": "reserving 4 metadata bytes always succeeds under test_run's 256-byte headroom; the run pins that outcome by hand, since hornet's adjust{idx}_ok is a free Bool",
+  "runs": {
+    "reserve_4": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "pin": [{"helper": "bpf_xdp_adjust_meta", "nth": 0, "op": "eq", "value": 0}]
+    }
+  }
+}

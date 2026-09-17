@@ -1,0 +1,22 @@
+{
+  "_targets": "an update that overwrites an existing key in a full HASH map still stores",
+  "_predict": "PASS",
+  "_why": "the key is already present, so the update fits and the lookup reads the new value",
+  "runs": {
+    "existing_key": {
+      "pkt": "05ffffffffff aabbccddee01 0800",
+      "maps": {
+        "one": {
+          "0x05000000": "0x01000000"
+        }
+      },
+      "observe": {
+        "maps": {
+          "one": [
+            "0x05000000"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hornet.local/schemas/e1-runs.schema.json",
+  "title": "E1 concrete runs (cases/<stem>/runs.json)",
+  "description": "Concrete inputs the kernel answers (oracle/record.py) and hornet is compared against (casesuite.py). Keys starting with '_' are notes: never parsed, never hashed. See casefiles.py.",
+  "type": "object",
+  "required": ["runs"],
+  "properties": {
+    "object": {"type": "string", "pattern": "\\.o$", "description": "Relative to objs/. Default <stem>.o."},
+    "entry": {"type": "string", "description": "Entry symbol. Default from benchmark/common.py (xdp_prog_main)."},
+    "tails": {
+      "type": "array",
+      "description": "Tail-call callees, hornet's --tail syntax with OBJ relative to objs/.",
+      "items": {"type": "string", "pattern": "^[^:]+\\.o:[A-Za-z_][A-Za-z0-9_]*@([A-Za-z_][A-Za-z0-9_]*/)?[0-9]+$"}
+    },
+    "cpu": {"type": "integer", "minimum": 0, "description": "The CPU the kernel run is pinned to. Default 0."},
+    "nondet": {"type": "boolean", "description": "The program calls a helper whose result varies between runs; its samples are recorded as a list."},
+    "runs": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        "^_": true,
+        "^[A-Za-z0-9_]+$": {"$ref": "#/$defs/run"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {"^_": true},
+  "additionalProperties": false,
+  "$defs": {
+    "run": {
+      "type": "object",
+      "required": ["pkt"],
+      "properties": {
+        "pkt": {
+          "type": "string",
+          "pattern": "^\\s*([0-9a-fA-F]{2}\\s*){14,}$",
+          "description": "Every packet byte, network order, hex; spaces are ignored. At least 14 bytes (ETH_HLEN)."
+        },
+        "maps": {
+          "type": "object",
+          "description": "Entries seeded after load, by map name. Keys and values in memory order, as input.maps spells them.",
+          "additionalProperties": {"type": "object", "additionalProperties": {"$ref": "#/$defs/val"}}
+        },
+        "ctx": {
+          "type": "object",
+          "properties": {
+            "ingress_ifindex": {"type": "integer"},
+            "rx_queue_index": {"type": "integer"}
+          },
+          "additionalProperties": false
+        },
+        "pin": {
+          "type": "array",
+          "description": "Hand-derived helper outcomes the comparison is conditioned on, as helper atoms; {\"helper\": ..., \"nth\": k} names the k-th call of that helper instead of an idx.",
+          "items": {"type": "object"}
+        },
+        "observe": {
+          "type": "object",
+          "description": "What the kernel run reads back besides r0.",
+          "properties": {
+            "maps": {
+              "type": "object",
+              "additionalProperties": {
+                "oneOf": [
+                  {"const": "*"},
+                  {"type": "array", "items": {"$ref": "#/$defs/val"}}
+                ]
+              }
+            },
+            "bss": {"type": "array", "items": {"type": "string"}},
+            "pkt": {"type": "boolean"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "patternProperties": {"^_": true},
+      "additionalProperties": false
+    },
+    "val": {
+      "oneOf": [
+        {"type": "integer"},
+        {"type": "string"},
+        {"type": "array", "items": {"type": "integer", "minimum": 0, "maximum": 255}}
+      ]
+    }
+  }
+}

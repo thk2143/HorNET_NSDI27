@@ -1,0 +1,14 @@
+{
+  "_targets": "over every packet: each path's write holds on that path, the other path is live after the join, and the merged byte is not path-independent",
+  "_expect": {"byte_path_writes_aa": "holds", "word_path_reachable": "sat", "not_path_independent": "violated"},
+  "exit_conditions": {
+    "byte_path_writes_aa": {"assert": "all", "cond": {"or": [
+      {"offset": 0, "size": 4, "value": [1, 0, 0, 0], "op": "ne"},
+      {"ret": 0},
+      {"offset": 20, "size": 1, "value": 170}]}},
+    "word_path_reachable": {"assert": "exists", "cond": {"and": [
+      {"ret": 1}, {"offset": 20, "size": 2, "value": [187, 187]}]}},
+    "not_path_independent": {"assert": "all", "cond": {"or": [
+      {"ret": 0}, {"offset": 20, "size": 1, "value": 170}]}}
+  }
+}

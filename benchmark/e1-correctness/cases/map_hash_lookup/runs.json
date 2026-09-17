@@ -1,0 +1,25 @@
+{
+  "_targets": "HASH presence: a lookup hits exactly the keys the map holds, and the value behind a hit is the stored one",
+  "_predict": "PASS",
+  "runs": {
+    "miss": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {"by_src": {}},
+      "observe": {"maps": {"by_src": ["0xaabbccddee010000"]}}
+    },
+    "hit": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {"by_src": {"0xaabbccddee010000": "0x05000000"}},
+      "observe": {"maps": {"by_src": ["0xaabbccddee010000"]}}
+    },
+    "hit_zero": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {"by_src": {"0xaabbccddee010000": "0x00000000"}}
+    },
+    "other_source": {
+      "_why": "the map holds :01, the frame comes from :02",
+      "pkt": "ffffffffffff aabbccddee02 0800",
+      "maps": {"by_src": {"0xaabbccddee010000": "0x05000000"}}
+    }
+  }
+}

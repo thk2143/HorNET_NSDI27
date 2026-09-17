@@ -1,0 +1,32 @@
+{
+  "_targets": "a lookup at a merged key reads the entry of the key its path chose",
+  "_predict": "PASS",
+  "runs": {
+    "key_7": {
+      "pkt": "01ffffffffff aabbccddee01 0800",
+      "maps": {
+        "h": {
+          "0x07000000": "0x46000000",
+          "0x09000000": "0x5a000000"
+        }
+      }
+    },
+    "key_9": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {
+        "h": {
+          "0x07000000": "0x46000000",
+          "0x09000000": "0x5a000000"
+        }
+      }
+    },
+    "key_9_absent": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {
+        "h": {
+          "0x07000000": "0x46000000"
+        }
+      }
+    }
+  }
+}

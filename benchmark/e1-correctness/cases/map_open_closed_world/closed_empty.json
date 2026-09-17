@@ -1,0 +1,11 @@
+{
+  "_targets": "naming the HASH map with {} closes it empty; the ARRAY is unaffected",
+  "_expect": {"h7_may_be_present": "unsat", "h7_absence_provable": "holds", "a2_in_bounds_present": "holds", "a9_out_of_bounds_absent": "unsat"},
+  "input": {"maps": {"h": {}}},
+  "exit_conditions": {
+    "h7_may_be_present":       {"assert": "exists", "cond": {"map": "h", "key": "0x07000000", "contains": true}},
+    "h7_absence_provable":     {"assert": "all",    "cond": {"map": "h", "key": "0x07000000", "contains": false}},
+    "a2_in_bounds_present":    {"assert": "all",    "cond": {"map": "a", "key": "0x02000000", "contains": true}},
+    "a9_out_of_bounds_absent": {"assert": "exists", "cond": {"map": "a", "key": "0x09000000", "contains": true}}
+  }
+}

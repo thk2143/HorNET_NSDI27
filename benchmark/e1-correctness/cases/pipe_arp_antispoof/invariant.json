@@ -1,0 +1,30 @@
+{
+  "_targets": "over every 42-byte packet, with one cached entry: only PASS and DROP, a drop means a complete ARP packet, a pass on the cached sender needs the cached IP, and a spoofed IP drops",
+  "_expect": {
+    "never_tx_or_redirect": "holds",
+    "tx_impossible": "unsat",
+    "drop_needs_arp": "holds",
+    "cached_sender_passes": "sat",
+    "spoofed_ip_drops": "holds"
+  },
+  "input": {
+    "context": {"pkt_len": 42},
+    "maps": {"arp_cache": {"0xaabbccddee01000000000000": "10.0.0.1"}}
+  },
+  "exit_conditions": {
+    "never_tx_or_redirect": {"assert": "all", "cond": {"or": [{"ret": 1}, {"ret": 2}]}},
+    "tx_impossible":        {"assert": "exists", "cond": {"ret": 3}},
+    "drop_needs_arp": {"assert": "all", "cond": {"or": [
+      {"ret": 1, "op": "ne"}, {"offset": 12, "size": 2, "value": "0x0806"}]}},
+    "cached_sender_passes": {"assert": "exists", "cond": {"and": [
+      {"ret": 2}, {"offset": 12, "size": 2, "value": "0x0806"},
+      {"offset": 22, "size": 6, "value": "aa:bb:cc:dd:ee:01"},
+      {"offset": 28, "size": 4, "value": "10.0.0.1"}]}},
+    "spoofed_ip_drops": {"assert": "all", "cond": {"or": [
+      {"not": {"and": [
+        {"offset": 12, "size": 2, "value": "0x0806"},
+        {"offset": 22, "size": 6, "value": "aa:bb:cc:dd:ee:01"},
+        {"offset": 28, "size": 4, "value": "10.0.0.2"}]}},
+      {"ret": 1}]}}
+  }
+}

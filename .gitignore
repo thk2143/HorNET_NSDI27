@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# virtualenv
+venv/
+
+# cloned and built by benchmark/e1-correctness/conformance/build.sh
+benchmark/e1-correctness/bpf_conformance/
+
+# built by benchmark/e1-correctness/oracle/build.sh
+benchmark/e1-correctness/oracle/build/

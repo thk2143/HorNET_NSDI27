@@ -1,0 +1,33 @@
+{
+  "_targets": "over every packet: a tagged frame with 0x45 at byte 18 passes, whatever byte 14 holds",
+  "_expect": {
+    "tagged_ipv4_passes": "holds"
+  },
+  "exit_conditions": {
+    "tagged_ipv4_passes": {
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "offset": 12,
+            "size": 2,
+            "value": "0x8100",
+            "op": "ne"
+          },
+          {
+            "offset": 18,
+            "size": 1,
+            "value": 69,
+            "op": "ne"
+          },
+          {
+            "ret": 0
+          },
+          {
+            "ret": 2
+          }
+        ]
+      }
+    }
+  }
+}

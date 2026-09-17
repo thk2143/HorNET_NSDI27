@@ -1,0 +1,10 @@
+#!/bin/sh
+# The plugin bpf_conformance drives: one test on stdin, hornet's r0 on stdout.
+# It needs hornet's dependencies, so it runs under the project venv if there is
+# one; HORNET_PYTHON overrides that.
+here=$(dirname "$(readlink -f "$0")")
+venv="$here/../../../venv/bin/python"
+if [ -z "${HORNET_PYTHON:-}" ] && [ -x "$venv" ]; then
+    HORNET_PYTHON="$venv"
+fi
+exec "${HORNET_PYTHON:-python3}" -B "$here/hornet_plugin.py" "$@"

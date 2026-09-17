@@ -1,0 +1,33 @@
+{
+  "_targets": "a successful adjust_head(+4) shrinks pkt_len by 4, which the second bounds check sees",
+  "_predict": "PASS",
+  "runs": {
+    "tagged_64": {
+      "_why": "pin: 64 - 4 >= ETH_HLEN",
+      "pkt": "ffffffffffff aabbccddee01 8100 0001 0800 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "pin": [
+        {
+          "helper": "bpf_xdp_adjust_head",
+          "nth": 0,
+          "op": "eq",
+          "value": 0
+        }
+      ]
+    },
+    "tagged_18": {
+      "_why": "pin: 18 - 4 = ETH_HLEN, exactly the smallest shrink that succeeds",
+      "pkt": "ffffffffffff aabbccddee01 8100 0001 0800",
+      "pin": [
+        {
+          "helper": "bpf_xdp_adjust_head",
+          "nth": 0,
+          "op": "eq",
+          "value": 0
+        }
+      ]
+    },
+    "untagged": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c 00000000 40110000 0a000001 0a000002 03e8 0035 0008 0000"
+    }
+  }
+}

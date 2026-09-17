@@ -1,0 +1,11 @@
+{
+  "_targets": "bpf_get_current_uid_gid",
+  "_predict": "PASS (nondet: the kernel's exit must be admitted)",
+  "_why": "value-only helper: r0 is a free u64 per call site; the uid is whoever records, here an ordinary user with a capability-carrying runner",
+  "nondet": true,
+  "runs": {
+    "runner_uid": {
+      "pkt": "ffffffffffff aabbccddee01 0800"
+    }
+  }
+}

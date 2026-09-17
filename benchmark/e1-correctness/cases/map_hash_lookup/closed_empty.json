@@ -1,0 +1,9 @@
+{
+  "_targets": "naming a map with {} closes it empty: no lookup can hit, so the pass path is dead",
+  "_expect": {"never_passes": "holds", "passes": "unsat"},
+  "input": {"maps": {"by_src": {}}},
+  "exit_conditions": {
+    "never_passes": {"assert": "all", "cond": {"ret": 2, "op": "ne"}},
+    "passes":       {"assert": "exists", "cond": {"ret": 2}}
+  }
+}

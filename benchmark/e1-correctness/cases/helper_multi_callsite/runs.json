@@ -1,0 +1,36 @@
+{
+  "_targets": "several helpers in one program; the stored time varies run to run, and hornet must admit each sample",
+  "_predict": "PASS",
+  "nondet": true,
+  "cpu": 0,
+  "runs": {
+    "first_seen": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {
+        "last_seen": {}
+      },
+      "observe": {
+        "maps": {
+          "last_seen": [
+            "0x00000000"
+          ]
+        }
+      }
+    },
+    "seen_before": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {
+        "last_seen": {
+          "0x00000000": "0x0500000000000000"
+        }
+      },
+      "observe": {
+        "maps": {
+          "last_seen": [
+            "0x00000000"
+          ]
+        }
+      }
+    }
+  }
+}

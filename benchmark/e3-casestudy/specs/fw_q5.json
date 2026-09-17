@@ -1,0 +1,39 @@
+{
+  "_comment": "fw campaign, property q5 of 5. The `input` world below is the same in all 5; only the condition changes.",
+  "input": {
+    "maps": {
+      "tx_port": {
+        "0x06000000": "0x06000000",
+        "0x07000000": "0x07000000"
+      },
+      "flow_ctx_table": {}
+    }
+  },
+  "exit_conditions": {
+    "icmp_dropped": {
+      "_comment": "A protocol with no L4 flow key is dropped, not forwarded.",
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "not": {
+              "and": [
+                {
+                  "field": "eth_type",
+                  "value": "0x0800"
+                },
+                {
+                  "field": "ip_proto",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          {
+            "ret": 1
+          }
+        ]
+      }
+    }
+  }
+}

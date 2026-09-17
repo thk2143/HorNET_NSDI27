@@ -1,0 +1,10 @@
+{
+  "_targets": "over every packet: past the bounds check the stored bytes are the ones at exit, the stale ones are not, and the load sees them",
+  "_expect": {"written": "holds", "stale_zero": "unsat", "tx_reachable": "sat", "never_drops": "holds"},
+  "exit_conditions": {
+    "written":      {"assert": "all", "cond": {"or": [{"ret": 0}, {"offset": 20, "size": 4, "value": [239, 190, 173, 222]}]}},
+    "stale_zero":   {"assert": "exists", "cond": {"and": [{"ret": 3}, {"offset": 20, "size": 4, "value": 0}]}},
+    "tx_reachable": {"assert": "exists", "cond": {"ret": 3}},
+    "never_drops":  {"assert": "all", "cond": {"ret": 1, "op": "ne"}}
+  }
+}

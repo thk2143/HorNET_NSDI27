@@ -1,0 +1,8 @@
+{
+  "_targets": "over every packet: past the bounds checks the read-back always matches, and a slot-2 write always reaches byte 16",
+  "_expect": {"read_back_matches": "holds", "slot_2_never_passes": "unsat"},
+  "exit_conditions": {
+    "read_back_matches":   {"assert": "all", "cond": {"or": [{"pkt_len": {"max": 21}}, {"ret": 0, "op": "ne"}]}},
+    "slot_2_never_passes": {"assert": "exists", "cond": {"and": [{"offset": 0, "size": 1, "value": 2}, {"ret": 2}]}}
+  }
+}

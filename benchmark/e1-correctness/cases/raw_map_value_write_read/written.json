@@ -1,0 +1,8 @@
+{
+  "_targets": "over any entry value: the second lookup sees the write, and the map keeps it",
+  "_expect": {"returns_tx": "holds", "value_stored": "holds"},
+  "exit_conditions": {
+    "returns_tx":   {"assert": "all", "cond": {"ret": 3}},
+    "value_stored": {"assert": "all", "cond": {"map": "vals", "key": "0x01000000", "value": "0x44332211"}}
+  }
+}

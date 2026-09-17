@@ -1,0 +1,25 @@
+{
+  "_targets": "a realistic pipeline through bpf_xdp_adjust_head: the kernel's answer on a tagged frame is XDP_PASS alone",
+  "_predict": "PASS",
+  "_why": "adjust_head(+4) on an 18-byte frame always succeeds; the tagged run pins that outcome by hand, since hornet's adjust{idx}_ok is a free Bool",
+  "runs": {
+    "non_vlan": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c00000000401100000a0000010a000002"
+    },
+    "vlan_too_short": {
+      "pkt": "ffffffffffff aabbccddee01 8100 0000"
+    },
+    "vlan_tagged_pinned": {
+      "_why": "the same frame with the helper's outcome pinned by hand: 18 - 4 = 14 >= ETH_HLEN, so it returns 0",
+      "pkt": "ffffffffffff aabbccddee01 8100 0001 0800",
+      "pin": [
+        {
+          "helper": "bpf_xdp_adjust_head",
+          "nth": 0,
+          "op": "eq",
+          "value": 0
+        }
+      ]
+    }
+  }
+}

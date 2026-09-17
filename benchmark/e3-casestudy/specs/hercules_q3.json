@@ -1,0 +1,42 @@
+{
+  "_comment": "hercules campaign, property q3 of 5. The `input` world below is the same in all 5; only the condition changes.",
+  "input": {
+    "packet": "Ether(type=0x0800)",
+    "context": {
+      "pkt_len": 1514
+    },
+    "maps": {
+      "num_xsks": {
+        "0": "0x01000000"
+      }
+    }
+  },
+  "exit_conditions": {
+    "wrong_udp_port_passed": {
+      "_comment": "It cannot steal another application's UDP traffic.",
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "not": {
+              "and": [
+                {
+                  "field": "ip_proto",
+                  "value": 17
+                },
+                {
+                  "field": "udp_dport",
+                  "value": 30041,
+                  "op": "ne"
+                }
+              ]
+            }
+          },
+          {
+            "ret": 2
+          }
+        ]
+      }
+    }
+  }
+}

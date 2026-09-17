@@ -1,0 +1,16 @@
+{
+  "_targets": "a map write lands only on its own key: seen through an equal packet-derived key, not through a different one",
+  "_predict": "PASS",
+  "runs": {
+    "keys_1_2": {
+      "pkt": "01000000 02000000 ffff aabb 0800",
+      "maps": {"m": {"0x01000000": "0x05000000", "0x02000000": "0x00000000"}},
+      "observe": {"maps": {"m": ["0x01000000", "0x02000000"]}}
+    },
+    "keys_1_1": {
+      "pkt": "01000000 01000000 ffff aabb 0800",
+      "maps": {"m": {"0x01000000": "0x05000000", "0x02000000": "0x00000000"}},
+      "observe": {"maps": {"m": ["0x01000000", "0x02000000"]}}
+    }
+  }
+}

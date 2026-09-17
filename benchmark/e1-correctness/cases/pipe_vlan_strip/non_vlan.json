@@ -1,0 +1,8 @@
+{
+  "_targets": "an IPv4 frame passes before bpf_xdp_adjust_head is ever reached, whatever the bytes past the Ethernet header",
+  "_expect": {"non_vlan_passes": "holds"},
+  "input": {"packet": "Ether(type=0x0800)/IP()"},
+  "exit_conditions": {
+    "non_vlan_passes": {"assert": "all", "cond": {"ret": 2}}
+  }
+}

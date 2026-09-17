@@ -1,0 +1,15 @@
+{
+  "_targets": "a fresh HASH map holds nothing and a fresh ARRAY holds every in-bounds key",
+  "_predict": "PASS",
+  "runs": {
+    "h_empty": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "observe": {"maps": {"h": ["0x07000000"], "a": ["0x02000000"]}}
+    },
+    "h_holds_7": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {"h": {"0x07000000": "0x01000000"}},
+      "observe": {"maps": {"h": ["0x07000000"], "a": ["0x02000000"]}}
+    }
+  }
+}

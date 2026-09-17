@@ -1,0 +1,12 @@
+{
+  "_targets": "bpf_xdp_adjust_tail shrinks the frame without moving data",
+  "_predict": "PASS",
+  "_why": "shrinking a 64-byte frame by 4 always succeeds; the run pins that outcome by hand, since hornet's adjust{idx}_ok is a free Bool",
+  "runs": {
+    "shrink_64": {
+      "pkt": "ffffffffffff aabbccddee01 0800 0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132",
+      "pin": [{"helper": "bpf_xdp_adjust_tail", "nth": 0, "op": "eq", "value": 0}],
+      "observe": {"pkt": true}
+    }
+  }
+}

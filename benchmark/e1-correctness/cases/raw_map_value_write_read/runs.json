@@ -1,0 +1,15 @@
+{
+  "_targets": "a constant-offset map value store is what a later lookup of the same key reads, and what the map holds afterwards",
+  "_predict": "PASS",
+  "runs": {
+    "fresh": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "observe": {"maps": {"vals": ["0x01000000"]}}
+    },
+    "seeded": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {"vals": {"0x01000000": "0x05000000"}},
+      "observe": {"maps": {"vals": ["0x01000000"]}}
+    }
+  }
+}

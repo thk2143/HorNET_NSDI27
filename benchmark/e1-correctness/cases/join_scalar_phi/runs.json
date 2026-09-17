@@ -1,0 +1,15 @@
+{
+  "_targets": "a merged scalar carries the value of the path that ran",
+  "_predict": "PASS",
+  "runs": {
+    "x3_y5": {
+      "pkt": "0102ffffffffaabbccddee010800"
+    },
+    "x7_y9": {
+      "pkt": "1402ffffffffaabbccddee010800"
+    },
+    "x3_y12": {
+      "pkt": "0109ffffffffaabbccddee010800"
+    }
+  }
+}

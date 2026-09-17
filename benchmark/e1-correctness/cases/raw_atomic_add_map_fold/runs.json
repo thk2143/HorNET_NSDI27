@@ -1,0 +1,21 @@
+{
+  "_targets": "a read after an atomic add on a map value sees the sum",
+  "_predict": "PASS",
+  "runs": {
+    "seeded_10": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {
+        "c": {
+          "0x00000000": "0x0a00000000000000"
+        }
+      },
+      "observe": {
+        "maps": {
+          "c": [
+            "0x00000000"
+          ]
+        }
+      }
+    }
+  }
+}

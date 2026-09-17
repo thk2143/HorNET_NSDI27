@@ -1,0 +1,50 @@
+{
+  "_targets": "parsing, a map counter and a map-keyed redirect, composed",
+  "_predict": "PASS",
+  "runs": {
+    "new_flow": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c 00000000 40110000 0a000001 0a000002 03e8 0035 0008 0000",
+      "maps": {
+        "flows": {},
+        "tx": {
+          "0x35000000": "0x01000000"
+        }
+      },
+      "observe": {
+        "maps": {
+          "flows": [
+            "0x0a0000010a00000203e80035"
+          ]
+        }
+      }
+    },
+    "known_flow": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c 00000000 40110000 0a000001 0a000002 03e8 0035 0008 0000",
+      "maps": {
+        "flows": {
+          "0x0a0000010a00000203e80035": "0x0700000000000000"
+        },
+        "tx": {
+          "0x35000000": "0x01000000"
+        }
+      },
+      "observe": {
+        "maps": {
+          "flows": [
+            "0x0a0000010a00000203e80035"
+          ]
+        }
+      }
+    },
+    "no_port": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c 00000000 40110000 0a000001 0a000002 03e8 0035 0008 0000",
+      "maps": {
+        "flows": {},
+        "tx": {}
+      }
+    },
+    "not_udp": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c 00000000 40060000 0a000001 0a000002 03e8 0035 0008 0000"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "_targets": "over every length: the four flags are never inconsistent, and exactly 20 bytes is the XDP_TX case",
+  "_expect": {
+    "inconsistent_unreachable": "unsat",
+    "twenty_is_tx": "holds"
+  },
+  "exit_conditions": {
+    "inconsistent_unreachable": {
+      "assert": "exists",
+      "cond": {
+        "ret": 0
+      }
+    },
+    "twenty_is_tx": {
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "pkt_len": {
+              "max": 19
+            }
+          },
+          {
+            "pkt_len": {
+              "min": 21
+            }
+          },
+          {
+            "ret": 3
+          }
+        ]
+      }
+    }
+  }
+}

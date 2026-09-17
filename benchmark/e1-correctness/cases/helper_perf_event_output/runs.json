@@ -1,0 +1,12 @@
+{
+  "_targets": "bpf_perf_event_output leaves the program's state and decision alone",
+  "_predict": "PASS",
+  "runs": {
+    "arp": {
+      "pkt": "ffffffffffff aabbccddee01 0806 0001 0800 06 04 0001 aabbccddee01 0a000001 000000000000 0a000002"
+    },
+    "ipv4": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c 00000000 40110000 0a000001 0a000002 03e8 0035 0008 0000"
+    }
+  }
+}

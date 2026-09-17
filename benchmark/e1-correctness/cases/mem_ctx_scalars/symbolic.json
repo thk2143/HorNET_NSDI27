@@ -1,0 +1,21 @@
+{
+  "_targets": "with nothing pinned, both context fields are free: every exit is reachable",
+  "_expect": {
+    "other_queue_reachable": "sat",
+    "other_device_reachable": "sat"
+  },
+  "exit_conditions": {
+    "other_queue_reachable": {
+      "assert": "exists",
+      "cond": {
+        "ret": 3
+      }
+    },
+    "other_device_reachable": {
+      "assert": "exists",
+      "cond": {
+        "ret": 1
+      }
+    }
+  }
+}

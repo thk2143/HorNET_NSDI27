@@ -1,0 +1,8 @@
+{
+  "_targets": "over every packet: byte 300 holds the write at every exit past the bounds check, and byte 44 can still be 0 after it",
+  "_expect": {"offset_300_written": "holds", "offset_44_not_aliased": "sat"},
+  "exit_conditions": {
+    "offset_300_written":    {"assert": "all", "cond": {"or": [{"ret": 0}, {"offset": 300, "size": 1, "value": 90}]}},
+    "offset_44_not_aliased": {"assert": "exists", "cond": {"and": [{"offset": 44, "size": 1, "value": 0}, {"ret": 2}]}}
+  }
+}

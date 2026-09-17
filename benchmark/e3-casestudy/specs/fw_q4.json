@@ -1,0 +1,50 @@
+{
+  "_comment": "fw campaign, property q4 of 5. The `input` world below is the same in all 5; only the condition changes.",
+  "input": {
+    "maps": {
+      "tx_port": {
+        "0x06000000": "0x06000000",
+        "0x07000000": "0x07000000"
+      },
+      "flow_ctx_table": {}
+    }
+  },
+  "exit_conditions": {
+    "outbound_tcp_redirected": {
+      "_comment": "TCP from the trusted side is redirected out B_PORT.",
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "not": {
+              "and": [
+                {
+                  "field": "eth_type",
+                  "value": "0x0800"
+                },
+                {
+                  "field": "ip_proto",
+                  "value": 6
+                },
+                {
+                  "pkt_len": {
+                    "min": 42
+                  }
+                },
+                {
+                  "not": {
+                    "ctx": "ingress_ifindex",
+                    "value": 7
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "ret": 4
+          }
+        ]
+      }
+    }
+  }
+}

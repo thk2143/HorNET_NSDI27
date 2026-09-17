@@ -1,0 +1,25 @@
+{
+  "_targets": "over every packet: once 18 bytes are proven, a successful shrink never fails the second bounds check",
+  "_expect": {
+    "success_never_drops": "holds"
+  },
+  "exit_conditions": {
+    "success_never_drops": {
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "helper": "bpf_xdp_adjust_head",
+            "nth": 0,
+            "op": "ne",
+            "value": 0
+          },
+          {
+            "ret": 1,
+            "op": "ne"
+          }
+        ]
+      }
+    }
+  }
+}

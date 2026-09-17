@@ -1,0 +1,13 @@
+{
+  "_targets": "bpf_xdp_get_buff_len returns the frame length, not a free value",
+  "_predict": "PASS",
+  "_why": "r0 of the call is the block's pkt_len Expr, which the concrete run fixes",
+  "runs": {
+    "len_64": {
+      "pkt": "ffffffffffff aabbccddee01 0800 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "len_60": {
+      "pkt": "ffffffffffff aabbccddee01 0800 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    }
+  }
+}

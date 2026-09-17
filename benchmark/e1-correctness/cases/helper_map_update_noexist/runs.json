@@ -1,0 +1,34 @@
+{
+  "_targets": "BPF_NOEXIST leaves an existing key's value alone",
+  "_predict": "PASS",
+  "runs": {
+    "empty": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {
+        "m": {}
+      },
+      "observe": {
+        "maps": {
+          "m": [
+            "0x07000000"
+          ]
+        }
+      }
+    },
+    "existing_key": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {
+        "m": {
+          "0x07000000": "0x01000000"
+        }
+      },
+      "observe": {
+        "maps": {
+          "m": [
+            "0x07000000"
+          ]
+        }
+      }
+    }
+  }
+}

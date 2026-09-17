@@ -1,0 +1,15 @@
+{
+  "_targets": "an update inserts its key and stores its value for a later lookup, and touches no other key",
+  "_predict": "PASS",
+  "runs": {
+    "empty": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "observe": {"maps": {"m": ["0x07000000", "0x09000000"]}}
+    },
+    "overwrite": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {"m": {"0x07000000": "0x05000000"}},
+      "observe": {"maps": {"m": ["0x07000000", "0x09000000"]}}
+    }
+  }
+}

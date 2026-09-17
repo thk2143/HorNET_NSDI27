@@ -1,0 +1,28 @@
+{
+  "_targets": "over every packet: when byte 20 arrives as 0x10, neither drop exit is reachable",
+  "_expect": {
+    "no_drop_on_0x10": "unsat"
+  },
+  "exit_conditions": {
+    "no_drop_on_0x10": {
+      "assert": "exists",
+      "cond": {
+        "and": [
+          {
+            "offset": 20,
+            "size": 1,
+            "value": 16
+          },
+          {
+            "pkt_len": {
+              "min": 21
+            }
+          },
+          {
+            "ret": 1
+          }
+        ]
+      }
+    }
+  }
+}

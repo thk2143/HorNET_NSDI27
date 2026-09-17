@@ -1,0 +1,42 @@
+{
+  "_targets": "tailcall00.json's properties without block ids: a blocked IPv4 sender can be dropped, only three actions, and a complete IPv4 frame never aborts",
+  "_expect": {
+    "blocked_sender_drops": "sat",
+    "three_actions": "holds",
+    "ipv4_never_aborts": "holds"
+  },
+  "input": {
+    "packet": "Ether(type=0x0800)/IP(src='10.0.0.1')"
+  },
+  "exit_conditions": {
+    "blocked_sender_drops": {
+      "assert": "exists",
+      "cond": {
+        "ret": 1
+      }
+    },
+    "three_actions": {
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "ret": 0
+          },
+          {
+            "ret": 1
+          },
+          {
+            "ret": 2
+          }
+        ]
+      }
+    },
+    "ipv4_never_aborts": {
+      "assert": "all",
+      "cond": {
+        "ret": 0,
+        "op": "ne"
+      }
+    }
+  }
+}

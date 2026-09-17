@@ -1,0 +1,18 @@
+{
+  "_targets": "a tail call transfers exactly when its slot holds the callee, and the caller's packet write is what the callee reads",
+  "_predict": "PASS",
+  "tails": ["pipe_tailcall_index_cb.o:xdp_tail_callee@0"],
+  "runs": {
+    "slot_0": {
+      "pkt": "ff00ffffffff aabbccddee01 0800 4500001c0000000040110000000000000000",
+      "observe": {"pkt": true}
+    },
+    "slot_1_empty": {
+      "pkt": "ff01ffffffff aabbccddee01 0800 4500001c0000000040110000000000000000",
+      "observe": {"pkt": true}
+    },
+    "slot_9_out_of_range": {
+      "pkt": "ff09ffffffff aabbccddee01 0800 4500001c0000000040110000000000000000"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "_targets": "bpf_get_numa_node_id",
+  "_predict": "PASS (nondet: the kernel's exit must be admitted)",
+  "_why": "value-only helper: r0 is a free u64 per call site; the node is the recording machine's",
+  "nondet": true,
+  "runs": {
+    "this_node": {
+      "pkt": "ffffffffffff aabbccddee01 0800"
+    }
+  }
+}

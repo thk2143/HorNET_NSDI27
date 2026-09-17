@@ -1,0 +1,12 @@
+{
+  "_targets": "over every packet and array: past the bounds check index 64 always misses, and index 3 never does",
+  "_expect": {"index_64_drops": "holds", "index_3_never_drops": "unsat"},
+  "exit_conditions": {
+    "index_64_drops": {"assert": "all", "cond": {"or": [
+      {"ret": 0},
+      {"offset": 8, "size": 4, "value": [64, 0, 0, 0], "op": "ne"},
+      {"ret": 1}]}},
+    "index_3_never_drops": {"assert": "exists", "cond": {"and": [
+      {"offset": 8, "size": 4, "value": [3, 0, 0, 0]}, {"ret": 1}]}}
+  }
+}

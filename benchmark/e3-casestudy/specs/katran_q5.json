@@ -1,0 +1,40 @@
+{
+  "_comment": "katran campaign, property q5 of 5. The `input` world below is the same in all 5; only the condition changes.",
+  "input": {
+    "packet": "Ether(type=0x0800)",
+    "context": {
+      "pkt_len": 574
+    },
+    "maps": {
+      "vip_map": {
+        "0x0a00000100000000000000000000000000500600": "0x0000000007000000",
+        "0x0a00000100000000000000000000000001bb1100": "0x0000000007000000"
+      },
+      "lru_mapping": {}
+    }
+  },
+  "exit_conditions": {
+    "encap_tos_is_default": {
+      "_comment": "COPY_INNER_PACKET_TOS carries the client's TOS into the outer header.",
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "ret": 3,
+            "op": "ne"
+          },
+          {
+            "field": "ip_proto",
+            "value": 4,
+            "op": "ne"
+          },
+          {
+            "offset": 15,
+            "size": 1,
+            "value": 0
+          }
+        ]
+      }
+    }
+  }
+}

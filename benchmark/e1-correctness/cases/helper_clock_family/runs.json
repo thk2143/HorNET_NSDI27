@@ -1,0 +1,11 @@
+{
+  "_targets": "bpf_ktime_get_boot_ns, bpf_ktime_get_tai_ns, bpf_ktime_get_coarse_ns, bpf_jiffies64",
+  "_predict": "PASS (nondet: every sample must be admitted)",
+  "_why": "value-only helpers: each call site is a free u64, not tied to real time or to the other clocks",
+  "nondet": true,
+  "runs": {
+    "now": {
+      "pkt": "ffffffffffff aabbccddee01 0800"
+    }
+  }
+}

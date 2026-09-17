@@ -1,0 +1,15 @@
+{
+  "_targets": "a lookup resolves to the map it names when the BTF map definitions differ in size",
+  "_predict": "PASS",
+  "runs": {
+    "small0_holds_1": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "maps": {
+        "small0": {
+          "0x01000000": "0x07000000"
+        },
+        "small1": {}
+      }
+    }
+  }
+}

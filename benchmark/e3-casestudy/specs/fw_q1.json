@@ -1,0 +1,30 @@
+{
+  "_comment": "fw campaign, property q1 of 5. The `input` world below is the same in all 5; only the condition changes.",
+  "input": {
+    "maps": {
+      "tx_port": {
+        "0x06000000": "0x06000000",
+        "0x07000000": "0x07000000"
+      },
+      "flow_ctx_table": {}
+    }
+  },
+  "exit_conditions": {
+    "never_pass_never_tx": {
+      "_comment": "Safety: never hands the packet to the stack, never TXes.",
+      "assert": "all",
+      "cond": {
+        "and": [
+          {
+            "ret": 2,
+            "op": "ne"
+          },
+          {
+            "ret": 3,
+            "op": "ne"
+          }
+        ]
+      }
+    }
+  }
+}

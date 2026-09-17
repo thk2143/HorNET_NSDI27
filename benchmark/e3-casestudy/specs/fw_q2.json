@@ -1,0 +1,32 @@
+{
+  "_comment": "fw campaign, property q2 of 5. The `input` world below is the same in all 5; only the condition changes.",
+  "input": {
+    "maps": {
+      "tx_port": {
+        "0x06000000": "0x06000000",
+        "0x07000000": "0x07000000"
+      },
+      "flow_ctx_table": {}
+    }
+  },
+  "exit_conditions": {
+    "non_ip_dropped": {
+      "_comment": "A non-IPv4 frame is dropped.",
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "not": {
+              "field": "eth_type",
+              "value": "0x0800",
+              "op": "ne"
+            }
+          },
+          {
+            "ret": 1
+          }
+        ]
+      }
+    }
+  }
+}

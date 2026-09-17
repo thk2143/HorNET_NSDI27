@@ -1,0 +1,24 @@
+{
+  "_targets": "a store to one .bss global does not change another",
+  "_predict": "PASS",
+  "runs": {
+    "untouched_a": {
+      "pkt": "00ffffffffff aabbccddee01 0800",
+      "observe": {
+        "bss": [
+          "a",
+          "b"
+        ]
+      }
+    },
+    "written_a": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "observe": {
+        "bss": [
+          "a",
+          "b"
+        ]
+      }
+    }
+  }
+}

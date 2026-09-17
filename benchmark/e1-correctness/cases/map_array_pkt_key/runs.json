@@ -1,0 +1,21 @@
+{
+  "_targets": "ARRAY presence is key < max_entries, with the key taken from the packet",
+  "_predict": "PASS",
+  "runs": {
+    "index_3_fresh": {
+      "pkt": "ffffffffffff aabb03000000 0800"
+    },
+    "index_3_seeded": {
+      "pkt": "ffffffffffff aabb03000000 0800",
+      "maps": {
+        "buckets": {
+          "0x03000000": "0x0500000000000000"
+        }
+      }
+    },
+    "index_64": {
+      "_why": "one past the last slot",
+      "pkt": "ffffffffffff aabb40000000 0800"
+    }
+  }
+}

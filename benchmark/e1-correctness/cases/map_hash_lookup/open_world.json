@@ -1,0 +1,9 @@
+{
+  "_targets": "a map the spec does not name is open: a hit and a miss are both possible, and nothing else is",
+  "_expect": {"hit_passes": "sat", "miss_drops": "sat", "three_actions": "holds"},
+  "exit_conditions": {
+    "hit_passes":    {"assert": "exists", "cond": {"ret": 2}},
+    "miss_drops":    {"assert": "exists", "cond": {"ret": 1}},
+    "three_actions": {"assert": "all", "cond": {"or": [{"ret": 0}, {"ret": 1}, {"ret": 2}]}}
+  }
+}

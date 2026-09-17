@@ -1,0 +1,34 @@
+{
+  "_targets": "a lookup's hit or miss is decided at the call, not where the pointer is tested",
+  "_predict": "PASS",
+  "runs": {
+    "miss_then_update": {
+      "pkt": "01ffffffffff aabbccddee01 0800",
+      "maps": {
+        "m": {}
+      },
+      "observe": {
+        "maps": {
+          "m": [
+            "0x07000000"
+          ]
+        }
+      }
+    },
+    "hit_then_delete": {
+      "pkt": "00ffffffffff aabbccddee01 0800",
+      "maps": {
+        "m": {
+          "0x07000000": "0x01000000"
+        }
+      },
+      "observe": {
+        "maps": {
+          "m": [
+            "0x07000000"
+          ]
+        }
+      }
+    }
+  }
+}

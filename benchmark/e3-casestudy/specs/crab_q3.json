@@ -1,0 +1,55 @@
+{
+  "_comment": "crab campaign, property q3 of 5. The `input` world below is the same in all 5; only the condition changes.",
+  "input": {
+    "packet": "Ether(type=0x0800)/IP(proto=6)/TCP(flags='S',dataofs=5,reserved=0)",
+    "context": {
+      "pkt_len": 1514
+    },
+    "maps": {
+      "targets_count": {
+        "0": "0x03000000"
+      },
+      "targets_map": {
+        "0": "0x0000007f",
+        "0x01000000": "0x0100007f",
+        "0x02000000": "0x0200007f"
+      },
+      "macs_map": {
+        "0x0000007f": "00:00:00:00:00:00",
+        "0x0100007f": "01:01:01:01:01:01",
+        "0x0200007f": "02:02:02:02:02:02"
+      }
+    }
+  },
+  "exit_conditions": {
+    "target_ip_is_configured": {
+      "_comment": "A translated packet is addressed to a configured backend.",
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "not": {
+              "ret": 3
+            }
+          },
+          {
+            "or": [
+              {
+                "field": "ip_dst",
+                "value": "0.0.0.127"
+              },
+              {
+                "field": "ip_dst",
+                "value": "1.0.0.127"
+              },
+              {
+                "field": "ip_dst",
+                "value": "2.0.0.127"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

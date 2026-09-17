@@ -1,0 +1,9 @@
+{
+  "_targets": "with an empty map: the miss path is the only one, and the time call site is its own free value",
+  "_expect": {"time_is_free": "sat", "passes": "holds"},
+  "input": {"maps": {"last_seen": {}}},
+  "exit_conditions": {
+    "time_is_free": {"assert": "exists", "cond": {"helper": "bpf_ktime_get_ns", "nth": 0, "op": "eq", "value": 12345}},
+    "passes": {"assert": "all", "cond": {"ret": 2}}
+  }
+}

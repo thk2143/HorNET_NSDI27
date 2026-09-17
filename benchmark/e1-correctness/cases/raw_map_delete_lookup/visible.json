@@ -1,0 +1,9 @@
+{
+  "_targets": "starting from {7, 9}: key 7 is gone at every exit and key 9 is still there",
+  "_expect": {"deleted_key_gone": "unsat", "other_key_kept": "holds"},
+  "input": {"maps": {"m": {"0x07000000": "0x01000000", "0x09000000": "0x01000000"}}},
+  "exit_conditions": {
+    "deleted_key_gone": {"assert": "exists", "cond": {"map": "m", "key": "0x07000000", "contains": true}},
+    "other_key_kept":   {"assert": "all", "cond": {"map": "m", "key": "0x09000000", "contains": true}}
+  }
+}

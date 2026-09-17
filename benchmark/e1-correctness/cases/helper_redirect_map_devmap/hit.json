@@ -1,0 +1,14 @@
+{
+  "_targets": "with tx[3] filled: the helper atom names the real return -- slot 3 redirects, the other action is impossible there, and a value the helper cannot return is unsat",
+  "_expect": {"slot_3_redirects": "holds", "slot_3_never_passes": "unsat", "impossible_value": "unsat"},
+  "input": {"maps": {"tx": {"0x03000000": "0x01000000"}}},
+  "exit_conditions": {
+    "slot_3_redirects": {"assert": "all", "cond": {"or": [
+      {"offset": 14, "size": 1, "value": 3, "op": "ne"}, {"ret": 0},
+      {"helper": "bpf_redirect_map", "nth": 0, "op": "eq", "value": 4}]}},
+    "slot_3_never_passes": {"assert": "exists", "cond": {"and": [
+      {"offset": 14, "size": 1, "value": 3}, {"ret": 2}]}},
+    "impossible_value": {"assert": "exists", "cond":
+      {"helper": "bpf_redirect_map", "nth": 0, "op": "eq", "value": 999}}
+  }
+}

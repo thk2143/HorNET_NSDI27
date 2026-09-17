@@ -1,0 +1,22 @@
+{
+  "_targets": "a .bss store through a computed index is seen through an equal index and not an unequal one",
+  "_predict": "PASS",
+  "runs": {
+    "same_index": {
+      "pkt": "0303ffffffffaabbccddee010800",
+      "observe": {
+        "bss": [
+          "buf"
+        ]
+      }
+    },
+    "other_index": {
+      "pkt": "0304ffffffffaabbccddee010800",
+      "observe": {
+        "bss": [
+          "buf"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "_targets": "two maps in one object each resolve to their own map",
+  "_predict": "PASS",
+  "runs": {
+    "blocked_port": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c 00000000 40110000 0a000001 0a000002 03e8 0035 0008 0000",
+      "maps": {
+        "port_block": {
+          "0x0035": "0x01"
+        }
+      },
+      "observe": {
+        "maps": {
+          "port_stats": [
+            "0x00000000"
+          ],
+          "port_block": [
+            "0x0035"
+          ]
+        }
+      }
+    },
+    "open_port": {
+      "pkt": "ffffffffffff aabbccddee01 0800 4500001c 00000000 40110000 0a000001 0a000002 03e8 0035 0008 0000",
+      "maps": {
+        "port_block": {}
+      },
+      "observe": {
+        "maps": {
+          "port_stats": [
+            "0x00000000"
+          ]
+        }
+      }
+    },
+    "not_ip": {
+      "pkt": "ffffffffffff aabbccddee01 0806 0001 0800 06 04 0001 aabbccddee01 0a000001 000000000000 0a000002",
+      "observe": {
+        "maps": {
+          "port_stats": [
+            "0x00000000"
+          ]
+        }
+      }
+    }
+  }
+}

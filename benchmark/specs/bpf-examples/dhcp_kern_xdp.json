@@ -1,0 +1,31 @@
+{
+  "_comment": "Fully symbolic input: no packet bytes, no length and no map entry fixed.",
+  "block_conditions": {
+    "adjust_head_ok": {
+      "block": 34,
+      "assert": "exists",
+      "cond": {"idx": 223, "helper": "bpf_xdp_adjust_head", "op": "eq", "value": 0}
+    },
+    "csum_nonzero": {
+      "block": 55,
+      "assert": "exists",
+      "cond": {"idx": 413, "helper": "bpf_csum_diff", "op": "ne", "value": 0}
+    }
+  },
+  "exit_conditions": {
+    "server_configured": {
+      "assert": "exists",
+      "cond": {"map": "dhcp_server", "key": 0, "contains": true}
+    },
+    "no_redirect": {
+      "assert": "all",
+      "cond": {"or": [
+        {"not": {"field": "ip_proto", "value": 17}},
+        {"and": [
+          {"or": [{"ret": 0}, {"ret": 1}, {"ret": 2}, {"ret": 3}]},
+          {"ret": 4, "op": "ne"}
+        ]}
+      ]}
+    }
+  }
+}

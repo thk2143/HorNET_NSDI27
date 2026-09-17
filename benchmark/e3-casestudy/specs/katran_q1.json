@@ -1,0 +1,34 @@
+{
+  "_comment": "katran campaign, property q1 of 5. The `input` world below is the same in all 5; only the condition changes.",
+  "input": {
+    "packet": "Ether(type=0x0800)",
+    "context": {
+      "pkt_len": 574
+    },
+    "maps": {
+      "vip_map": {
+        "0x0a00000100000000000000000000000000500600": "0x0000000007000000",
+        "0x0a00000100000000000000000000000001bb1100": "0x0000000007000000"
+      },
+      "lru_mapping": {}
+    }
+  },
+  "exit_conditions": {
+    "no_redirect_no_abort": {
+      "_comment": "Safety: the return surface is DROP / PASS / TX.",
+      "assert": "all",
+      "cond": {
+        "and": [
+          {
+            "ret": 0,
+            "op": "ne"
+          },
+          {
+            "ret": 4,
+            "op": "ne"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "_targets": "a frame shorter than an Ethernet header passes on the bounds check alone",
+  "_why": "hand oracle: BPF_PROG_TEST_RUN refuses frames under ETH_HLEN, so there is no kernel run for this input",
+  "_expect": {"short_passes": "holds"},
+  "input": {"packet": "Raw(load=b'\\x00'*10)"},
+  "exit_conditions": {
+    "short_passes": {"assert": "all", "cond": {"ret": 2}}
+  }
+}

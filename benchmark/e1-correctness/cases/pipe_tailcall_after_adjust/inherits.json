@@ -1,0 +1,10 @@
+{
+  "_targets": "with a 64-byte frame: whenever the adjust succeeds the callee sees 68 bytes and returns XDP_TX",
+  "_expect": {"callee_sees_grown_frame": "holds", "grown_frame_reaches_tx": "sat"},
+  "input": {"context": {"pkt_len": 64}},
+  "exit_conditions": {
+    "callee_sees_grown_frame": {"assert": "all", "cond": {"or": [
+      {"helper": "bpf_xdp_adjust_head", "nth": 0, "op": "ne", "value": 0}, {"ret": 3}]}},
+    "grown_frame_reaches_tx": {"assert": "exists", "cond": {"ret": 3}}
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "_targets": "a write through a value pointer after its key was deleted leaves the key deleted",
+  "_predict": "PASS",
+  "runs": {
+    "present": {
+      "pkt": "02ffffffffff aabbccddee01 0800",
+      "maps": {
+        "m": {
+          "0x07000000": "0x0000000000000000"
+        }
+      },
+      "observe": {
+        "maps": {
+          "m": [
+            "0x07000000"
+          ]
+        }
+      }
+    }
+  }
+}

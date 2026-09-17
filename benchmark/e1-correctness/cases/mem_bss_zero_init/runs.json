@@ -1,0 +1,22 @@
+{
+  "_targets": "a .bss global is zero until written, and a write is what a later read of it sees",
+  "_predict": "PASS",
+  "runs": {
+    "untouched": {
+      "pkt": "00ffffffffff aabbccddee01 0800",
+      "observe": {
+        "bss": [
+          "g"
+        ]
+      }
+    },
+    "written": {
+      "pkt": "ffffffffffff aabbccddee01 0800",
+      "observe": {
+        "bss": [
+          "g"
+        ]
+      }
+    }
+  }
+}

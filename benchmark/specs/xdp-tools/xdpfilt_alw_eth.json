@@ -1,0 +1,22 @@
+{
+  "_comment": "Fully symbolic input: no packet bytes, no length and no map entry fixed.",
+  "block_conditions": {
+    "src_mac_allowed": {
+      "block": 21,
+      "assert": "exists",
+      "cond": {"idx": 102, "helper": "bpf_map_lookup_elem", "returns": "non_null"}
+    }
+  },
+  "exit_conditions": {
+    "no_tx_redirect": {
+      "assert": "all",
+      "cond": {"or": [
+        {"not": {"field": "eth_type", "value": "0x0800"}},
+        {"and": [
+          {"or": [{"ret": 0}, {"ret": 1}, {"ret": 2}]},
+          {"ret": 3, "op": "ne"}, {"ret": 4, "op": "ne"}
+        ]}
+      ]}
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "_targets": "every complete IPv4 frame is redirected",
+  "_expect": {
+    "ipv4_redirects": "holds"
+  },
+  "exit_conditions": {
+    "ipv4_redirects": {
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "pkt_len": {
+              "max": 13
+            }
+          },
+          {
+            "offset": 12,
+            "size": 2,
+            "value": "0x0800",
+            "op": "ne"
+          },
+          {
+            "ret": 4
+          }
+        ]
+      }
+    }
+  }
+}

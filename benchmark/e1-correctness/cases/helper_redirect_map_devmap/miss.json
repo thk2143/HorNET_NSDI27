@@ -1,0 +1,15 @@
+{
+  "_targets": "with tx[5] empty: slot 5 falls back to flags & 3 = XDP_PASS, and neither the action nor the helper's return can be XDP_REDIRECT there",
+  "_expect": {"slot_5_falls_back": "holds", "slot_5_never_redirects": "unsat", "slot_5_helper_not_redirect": "unsat"},
+  "input": {"maps": {"tx": {"0x03000000": "0x01000000"}}},
+  "exit_conditions": {
+    "slot_5_falls_back": {"assert": "all", "cond": {"or": [
+      {"offset": 14, "size": 1, "value": 5, "op": "ne"}, {"ret": 0},
+      {"helper": "bpf_redirect_map", "nth": 0, "op": "eq", "value": 2}]}},
+    "slot_5_never_redirects": {"assert": "exists", "cond": {"and": [
+      {"offset": 14, "size": 1, "value": 5}, {"ret": 4}]}},
+    "slot_5_helper_not_redirect": {"assert": "exists", "cond": {"and": [
+      {"offset": 14, "size": 1, "value": 5},
+      {"helper": "bpf_redirect_map", "nth": 0, "op": "eq", "value": 4}]}}
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "_targets": "over every packet: slot 0 transfers and nothing else does, and the callee sees the caller's write",
+  "_expect": {
+    "slot_0_returns_tx": "holds",
+    "slot_0_tx_reachable": "sat",
+    "slot_0_never_falls_back": "unsat",
+    "other_slot_never_transfers": "unsat",
+    "other_slot_falls_back": "sat"
+  },
+  "exit_conditions": {
+    "slot_0_returns_tx": {"assert": "all", "cond": {"or": [
+      {"offset": 1, "size": 1, "value": 0, "op": "ne"}, {"ret": 0}, {"ret": 3}]}},
+    "slot_0_tx_reachable": {"assert": "exists", "cond": {"and": [
+      {"offset": 1, "size": 1, "value": 0}, {"ret": 3}]}},
+    "slot_0_never_falls_back": {"assert": "exists", "cond": {"and": [
+      {"offset": 1, "size": 1, "value": 0}, {"ret": 2}]}},
+    "other_slot_never_transfers": {"assert": "exists", "cond": {"and": [
+      {"offset": 1, "size": 1, "value": 1}, {"ret": 3}]}},
+    "other_slot_falls_back": {"assert": "exists", "cond": {"and": [
+      {"offset": 1, "size": 1, "value": 1}, {"ret": 2}]}}
+  }
+}

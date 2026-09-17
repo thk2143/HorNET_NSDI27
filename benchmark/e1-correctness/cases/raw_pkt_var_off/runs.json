@@ -1,0 +1,15 @@
+{
+  "_targets": "a packet store through a computed offset is seen by a load through the same computed offset, and by a constant one exactly when they coincide",
+  "_predict": "PASS",
+  "runs": {
+    "slot_2": {
+      "_why": "p[0] & 7 == 2: the write lands on byte 16",
+      "pkt": "02ffffffffff aabbccddee01 0800 4500001c00000000401100000000000000000000",
+      "observe": {"pkt": true}
+    },
+    "slot_3": {
+      "pkt": "03ffffffffff aabbccddee01 0800 4500001c00000000401100000000000000000000",
+      "observe": {"pkt": true}
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "_targets": "a map the spec does not name is open: a HASH key may or may not be there, an ARRAY is populated in bounds and empty past it",
+  "_expect": {"h7_may_be_present": "sat", "h7_absence_unprovable": "violated", "a2_in_bounds_present": "holds", "a9_out_of_bounds_absent": "unsat"},
+  "exit_conditions": {
+    "h7_may_be_present":       {"assert": "exists", "cond": {"map": "h", "key": "0x07000000", "contains": true}},
+    "h7_absence_unprovable":   {"assert": "all",    "cond": {"map": "h", "key": "0x07000000", "contains": false}},
+    "a2_in_bounds_present":    {"assert": "all",    "cond": {"map": "a", "key": "0x02000000", "contains": true}},
+    "a9_out_of_bounds_absent": {"assert": "exists", "cond": {"map": "a", "key": "0x09000000", "contains": true}}
+  }
+}

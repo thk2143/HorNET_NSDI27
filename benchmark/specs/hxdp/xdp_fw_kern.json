@@ -1,0 +1,22 @@
+{
+  "_comment": "Fully symbolic input: no packet bytes, no length and no map entry fixed.",
+  "exit_conditions": {
+    "tcp_to_http": {
+      "assert": "exists",
+      "cond": {"and": [
+        {"field": "ip_proto", "value": 6},
+        {"field": "tcp_dport", "value": 80}
+      ]}
+    },
+    "firewall_pass_or_drop": {
+      "assert": "all",
+      "cond": {"or": [
+        {"not": {"field": "eth_type", "value": "0x0800"}},
+        {"and": [
+          {"or": [{"ret": 1}, {"ret": 2}]},
+          {"ret": 3, "op": "ne"}, {"ret": 4, "op": "ne"}
+        ]}
+      ]}
+    }
+  }
+}

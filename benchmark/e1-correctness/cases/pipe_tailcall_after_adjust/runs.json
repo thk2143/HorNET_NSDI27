@@ -1,0 +1,16 @@
+{
+  "_targets": "a tail-called program is entered on its caller's packet view, after the caller moved the head",
+  "_predict": "PASS",
+  "tails": ["pipe_tailcall_after_adjust_cb.o:xdp_tail_callee@0"],
+  "runs": {
+    "grow_64": {
+      "_why": "pin: -4 is inside the 216 bytes of headroom test_run leaves (growth up to 216 bytes succeeds on this kernel)",
+      "pkt": "ffffffffffff aabbccddee01 0800 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "pin": [{"helper": "bpf_xdp_adjust_head", "nth": 0, "op": "eq", "value": 0}]
+    },
+    "grow_40": {
+      "pkt": "ffffffffffff aabbccddee01 0800 000000000000000000000000000000000000000000000000000000",
+      "pin": [{"helper": "bpf_xdp_adjust_head", "nth": 0, "op": "eq", "value": 0}]
+    }
+  }
+}

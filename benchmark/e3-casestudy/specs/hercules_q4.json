@@ -1,0 +1,33 @@
+{
+  "_comment": "hercules campaign, property q4 of 5. The `input` world below is the same in all 5; only the condition changes.",
+  "input": {
+    "packet": "Ether(type=0x0800)",
+    "context": {
+      "pkt_len": 1514
+    },
+    "maps": {
+      "num_xsks": {
+        "0": "0x01000000"
+      }
+    }
+  },
+  "exit_conditions": {
+    "redirect_implies_scion_port": {
+      "_comment": "Anything taken from the kernel was addressed to the SCION port.",
+      "assert": "all",
+      "cond": {
+        "or": [
+          {
+            "not": {
+              "ret": 4
+            }
+          },
+          {
+            "field": "udp_dport",
+            "value": 30041
+          }
+        ]
+      }
+    }
+  }
+}

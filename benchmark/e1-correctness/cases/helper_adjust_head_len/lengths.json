@@ -1,0 +1,13 @@
+{
+  "_targets": "with the entry length pinned to 64: the length moves only if the call succeeded, and both outcomes stay possible until the program checks",
+  "_expect": {"failed_keeps_length": "holds", "grew": "sat", "not_grown": "sat", "stale": "violated"},
+  "input": {"context": {"pkt_len": 64}},
+  "exit_conditions": {
+    "failed_keeps_length": {"assert": "all", "cond": {"or": [
+      {"helper": "bpf_xdp_adjust_head", "nth": 0, "op": "eq", "value": 0},
+      {"pkt_len": {"min": 64, "max": 64}}]}},
+    "grew":      {"assert": "exists", "cond": {"pkt_len": {"min": 78, "max": 78}}},
+    "not_grown": {"assert": "exists", "cond": {"pkt_len": {"min": 64, "max": 64}}},
+    "stale":     {"assert": "all", "cond": {"pkt_len": {"min": 64, "max": 64}}}
+  }
+}
