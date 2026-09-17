@@ -1,13 +1,8 @@
 # HorNET
 
-Hornet is a static analyzer and verifier for compiled eBPF/XDP programs. It
-decodes an ELF object, builds a control-flow graph, tracks symbolic state
-through it, and decides a JSON specification about the program with an SMT
-solver — answering with a verdict and, for a violation, a concrete
-counterexample.
+HorNET is a static analyzer and functional verifier for compiled eBPF/XDP programs. It parses eBPF ELF binaries, constructs a control-flow graph, and tracks program state at the instruction level to recover packet-processing semantics. Given a JSON verification specification, HorNET performs query-specific analysis and SMT solving to determine whether the specified property holds, producing a concrete counterexample when it does not.
 
-This repository is the paper artifact: the analyzer and the four experiments
-that evaluate it.
+This repository contains the HorNET prototype and the artifacts for reproducing the four experiments presented in the paper.
 
 ## Layout
 
