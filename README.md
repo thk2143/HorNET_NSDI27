@@ -1,4 +1,4 @@
-# Hornet
+# HorNET
 
 Hornet is a static analyzer and verifier for compiled eBPF/XDP programs. It
 decodes an ELF object, builds a control-flow graph, tracks symbolic state
@@ -19,7 +19,7 @@ hornet/       the analyzer
   report/       the same records -> a description of the program
 benchmark/    the four experiments (E1-E4)
 example/      the open-source XDP programs the experiments analyze
-SPEC.md       the specification format
+spec.md       the specification format
 ```
 
 ## Setup
